@@ -19,7 +19,8 @@ html, body {
 body {
     color: black;
     background: black;
-    background-image: url('Untitled.png');
+    background-image: url('background.png');
+    background-size: 10em;
     background-repeat: repeat;
     font-family: 'Lora', serif;
 
@@ -29,10 +30,10 @@ body {
 }
 
 .titleBar {
-    background-color: #e999e947;
+    background-color: #679dd74d;
     border-radius: 5pt;
     box-shadow: 0 4pt 22pt #0000003b;
-    border: 1pt solid violet;
+    border: 1pt solid #87b1dd;
     margin-left: 5em;
     margin-right: 5em;
     margin-bottom: 2em;
@@ -43,7 +44,7 @@ body {
 }
 
 .titleButton {
-    background-color: lightpink;
+    background-color: #acb9f8;
     display: inline-block;
     margin: 0.3em 0.3em;
     padding: 0.12em 0.3em;
@@ -55,6 +56,15 @@ body {
 .titleButton:hover {
     box-shadow: 0.4em 0.4em 3pt #00000030;
 }
+
+.image-card {
+    width: 100%;
+    margin-top:2em;
+    box-shadow: 0pt 5pt 20pt #0006;
+    border: 1pt solid #eee;
+    border-radius: 7pt;
+}
+
 
 #content {
     /* background-color: #f7d4ff80; */
@@ -76,7 +86,9 @@ body {
 .guitarPicture {
     width:30em; 
     float: right;
-    padding-left: 2em;
+    margin-left: 2em;
+    border: 2pt solid #0006;
+    border-radius: 7pt;
 }
 
 .audio {
@@ -110,6 +122,10 @@ body {
 
     .titleButton {
         width: 50%
+    }
+    
+    .pdf {
+        height: 300pt;
     }
 
     .comment-input {
