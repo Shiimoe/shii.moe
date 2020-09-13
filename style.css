@@ -51,7 +51,9 @@ body {
     box-shadow: 0.3em 0.3em 0 #00000030;
     transition: 0.3s;
     font-size: 20pt;
-    width: 12.5%
+    width: 12.5%;
+    font-weight: bold;
+    font-variant: small-caps;
 }
 .titleButton:hover {
     box-shadow: 0.4em 0.4em 3pt #00000030;
@@ -147,6 +149,7 @@ body {
 h1 {
     color: black;
     text-align: center;
+    font-variant: small-caps;
 }
 
 li {
@@ -156,4 +159,8 @@ li {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+p {
+    font-size: large;
 }
