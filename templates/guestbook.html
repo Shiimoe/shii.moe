@@ -10,8 +10,11 @@
         .date {
             float: right;
         }
+        .date, .name {
+            color: #0007;
+        }
         .comment-text {
-            clear: left;
+            margin-top: 0.5em;
         }
         .comments {
             margin-top: 3em;
@@ -26,6 +29,9 @@
             padding: 0.4em 0.6em;
             font-size: 1em;
             width: 30%;
+        }
+        .comment {
+            margin: 1.5em 0;
         }
     </style>
 
@@ -58,11 +64,11 @@
     <div class="comments">
         {% for comment in comments %}
         <div class="comment">
-            <span class="name">{{ comment['name'] }}</span><span class="date">{{ comment['date'] }}</span>
-            <br>
+            <span class="name">~ {{ comment['name'] }}</span><span class="date">{{ comment['date'] }}</span>
+            <div style="clear: left;"></div>
             <p class="comment-text" style="font-size: 120%;">{{ comment['comment'] }}</p>
+            <hr style="border: none; height: 3pt; background: #0002;">
         </div>
-        <hr>
         {% endfor %}
     </div>
     {% else %}
