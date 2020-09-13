@@ -8,15 +8,24 @@ import json
 COMMENT_FILE = "comments.json"
 DATE_FORMAT = "%Y-%m-%d %H:%M"
 
+def read_comments():
+    comments = None
+    try:
+        with open(COMMENT_FILE, 'r') as f:
+            comments = json.load(f)
+    except FileNotFoundError:
+        comments = []
+        
+    return comments
+    
+
 @app.route('/')
 def home():
     return send_from_directory('./', 'index.html')
 
 @app.route('/guestbook')
 def guestbook():
-    comments = None
-    with open(COMMENT_FILE, 'r') as f:
-        comments = json.load(f)
+    comments = read_comments()
     return render_template('guestbook.html', comments=reversed(comments))
 
 @app.route('/postcomment', methods=['POST'])
@@ -25,10 +34,7 @@ def postcomment():
     comment = request.form['comment']
     date = datetime.now()
 
-    comments = None
-    with open(COMMENT_FILE, 'r') as f:
-        comments = json.load(f)
-    
+    comments = read_comments()
     comments.append({
         'name': name,
         'comment': comment,
