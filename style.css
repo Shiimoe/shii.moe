@@ -23,7 +23,7 @@ body {
     background-size: 10em;
     background-repeat: repeat;
     font-family: 'Lora', serif;
-
+    background-attachment: fixed;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
