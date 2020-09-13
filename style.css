@@ -117,7 +117,7 @@ body {
         margin-right: auto;
         padding-left: 0em;
         float: none;
-        max-width: 100%;
+        max-width: calc(100% - 4pt);
     }
 
     .titleButton {
