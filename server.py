@@ -33,7 +33,7 @@ def postcomment():
     name = request.form['name']
     comment = request.form['comment']
     date = datetime.now()
-    ip = request.remote_addr
+    ip = request.environ.get('HTTP_X_REAL_IP')
 
     comments = read_comments()
     comments.append({
