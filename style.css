@@ -82,7 +82,7 @@ body {
 .guitarAudio {
     display: block;
     text-align: center;
-    padding-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 .guitarPicture {
@@ -94,7 +94,7 @@ body {
 }
 
 .audio {
-    padding-top: 2em;
+    margin-top: 2em;
 }
 
 #mascot {
