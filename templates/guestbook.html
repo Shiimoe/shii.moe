@@ -3,6 +3,32 @@
 
 <head>
     <title>Shimo!!</title>
+    <style>
+        .name {
+            float: left;
+        }
+        .date {
+            float: right;
+        }
+        .comment-text {
+            clear: left;
+        }
+        .comments {
+            margin-top: 3em;
+        }
+        .comment-input {
+            width: 30%; 
+            height: 8em;
+            margin: 0.5em 0em;
+        }
+        .input {
+            font-family: 'Lora', serif;
+            padding: 0.4em 0.6em;
+            font-size: 1em;
+            width: 30%;
+        }
+    </style>
+
     <link rel='stylesheet' type='text/css' href="style.css"/>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +46,9 @@
     </div>
 
     <form action="/postcomment" method="POST">
-        <input class="name-input" name="name" placeholder="Your name" required>
+        <input class="name-input input" name="name" placeholder="Your name" required>
         <br>
-        <textarea class="comment-input" name="comment" placeholder="Your comment" required></textarea>
+        <textarea class="comment-input input" name="comment" placeholder="Your comment" required></textarea>
         <br>
         <input type="submit" value="Submit">
     </form>
@@ -45,27 +71,5 @@
 
     <img src="mascots/1.png" id="mascot"></img>
     <script src="image.js"></script>
-    <style>
-        .name {
-            float: left;
-        }
-        .date {
-            float: right;
-        }
-        .comment-text {
-            clear: left;
-        }
-        .comments {
-            margin-top: 3em;
-        }
-        .comment-input {
-            width: 30%; 
-            height: 8em;
-            font-family: 'Lora', serif;
-        }
-        .name-input {
-            font-family: 'Lora', serif;
-        }
-    </style>
 </body>
 </html>

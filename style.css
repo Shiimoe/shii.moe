@@ -113,10 +113,12 @@ body {
     }
 
     .comment-input {
-        width: 80%;
         height: 5em;
+        margin: 0em 0em;
     }
-
+    .input {
+        width: calc(100% - 1.2em)
+    }
     #mascot {
         height: 10em;
     }
