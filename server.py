@@ -33,12 +33,14 @@ def postcomment():
     name = request.form['name']
     comment = request.form['comment']
     date = datetime.now()
+    ip = request.remote_addr
 
     comments = read_comments()
     comments.append({
         'name': name,
         'comment': comment,
-        'date': datetime.strftime(date, DATE_FORMAT)
+        'date': datetime.strftime(date, DATE_FORMAT),
+        'ip': ip
     }) 
 
     with open(COMMENT_FILE, 'w') as f:
