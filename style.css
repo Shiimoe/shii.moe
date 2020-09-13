@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+::selection {
+    background: pink; /* WebKit/Blink Browsers */
+    color: white;
+  }
+  ::-moz-selection {
+    background: pink; /* Gecko Browsers */
+    color: white;
+  }
+
+
+html, body {
+    padding: 0;
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    color: black;
+    background: black;
+    background-image: url('Untitled.png');
+    background-repeat: repeat;
+    font-family: 'Lora', serif;
+
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titleBar {
+    background-color: #e999e947;
+    border-radius: 5pt;
+    box-shadow: 0 4pt 22pt #0000003b;
+    border: 1pt solid violet;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-bottom: 2em;
+    text-align: center;
+    padding-top: 0.75em;
+    padding-bottom: 0.90em;
+    display: block;
+}
+
+.titleButton {
+    background-color: lightpink;
+    display: inline-block;
+    margin: 0.3em 0.3em;
+    padding: 0.12em 0.3em;
+    box-shadow: 0.3em 0.3em 0 #00000030;
+    transition: 0.3s;
+    font-size: 20pt;
+    width: 12.5%
+}
+.titleButton:hover {
+    box-shadow: 0.4em 0.4em 3pt #00000030;
+}
+
+#content {
+    /* background-color: #f7d4ff80; */
+    padding: 1em;
+    min-height: calc(100vh - 2em);
+    padding-bottom: 20em;
+}
+
+.guitarCentre {
+    overflow: auto;
+}
+
+.guitarAudio {
+    display: block;
+    text-align: center;
+    padding-bottom: 2em;
+}
+
+.guitarPicture {
+    width:30em; 
+    float: right;
+    padding-left: 2em;
+}
+
+.audio {
+    padding-top: 2em;
+}
+
+#mascot {
+    height: 20em; 
+    position: fixed;
+    bottom:0em; 
+    right:0; 
+    opacity: .85;
+}
+
+
+@media only screen and (max-width: 724px) {
+    .guitarText {
+        font-family: 'Lora', serif;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    .guitarPicture {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0em;
+        float: none;
+        max-width: 100%;
+    }
+
+    .titleButton {
+        width: 50%
+    }
+
+    .comment-input {
+        width: 80%;
+        height: 5em;
+    }
+
+    #mascot {
+        height: 10em;
+    }
+    
+    #content {
+        padding-bottom: 10em;
+    }
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+li {
+    font-size: large;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

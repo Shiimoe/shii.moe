@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shimo!!</title>
+    <link rel='stylesheet' type='text/css' href="style.css"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="content">
+
+    <a href="/"><h1>Shimo!!</h1></a>
+
+    <div class="titleBar">
+        <div class="titleButton"><a href="/music">Musik</a></div>
+        <div class="titleButton"><a href="/school">Skole</a></div>
+        <div class="titleButton"><a href="/norsk">Norsk</a></div>
+        <div class="titleButton"><a href="/books">Bøker</a></div>
+    </div>
+
+    <form action="/postcomment" method="POST">
+        <input class="name-input" name="name" placeholder="Your name" required>
+        <br>
+        <textarea class="comment-input" name="comment" placeholder="Your comment" required></textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <!-- add gender radio boxes (femboy) -->
+
+    {% if comments %}
+    <div class="comments">
+        {% for comment in comments %}
+        <div class="comment">
+            <span class="name">{{ comment['name'] }}</span><span class="date">{{ comment['date'] }}</span>
+            <br>
+            <p class="comment-text" style="font-size: 120%;">{{ comment['comment'] }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No comments to display :(</p>
+    {% endif %}
+
+    <img src="mascots/1.png" id="mascot"></img>
+    <script src="image.js"></script>
+    <style>
+        .name {
+            float: left;
+        }
+        .date {
+            float: right;
+        }
+        .comment-text {
+            clear: left;
+        }
+        .comments {
+            margin-top: 3em;
+        }
+        .comment-input {
+            width: 30%; 
+            height: 8em;
+            font-family: 'Lora', serif;
+        }
+        .name-input {
+            font-family: 'Lora', serif;
+        }
+    </style>
+</body>
+</html>
