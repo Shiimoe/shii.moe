@@ -40,7 +40,9 @@ def postcomment():
     name = request.form.get('name')
     comment = request.form.get('comment')
     date = request.form.get('date') or datetime.strftime(now, DATE_FORMAT)
-    ip = request.environ.get('HTTP_X_REAL_IP')
+    ip = (request.environ.get('HTTP_X_REAL_IP') or
+          request.environ.get('REMOTE_ADDR')    or
+          request.remote_addr)
 
     # Comment or name left empty, send error message.
     if not (name or "").strip() or not (comment or "").strip():
@@ -66,3 +68,6 @@ def serve_static(p):
     if path.exists(p + '.html'):
         return send_from_directory('./', p + '.html')
     return send_from_directory('./', p)
+
+if __name__ == "__main__":
+    app.run(debug=True)
