@@ -15,33 +15,44 @@ def read_comments():
             comments = json.load(f)
     except FileNotFoundError:
         comments = []
-        
+
     return comments
-    
+
 
 @app.route('/')
 def home():
     return send_from_directory('./', 'index.html')
 
+def render_guestbook(**kw):
+    comments = read_comments()
+
+    kw['comments'] = reversed(comments)
+    return render_template('guestbook.html', **kw)
+
 @app.route('/guestbook')
 def guestbook():
-    comments = read_comments()
-    return render_template('guestbook.html', comments=reversed(comments))
+    return render_guestbook()
 
 @app.route('/postcomment', methods=['POST'])
 def postcomment():
-    name = request.form['name']
-    comment = request.form['comment']
-    date = datetime.now()
+    now = datetime.now()
+
+    name = request.form.get('name')
+    comment = request.form.get('comment')
+    date = request.form.get('date') or datetime.strftime(now, DATE_FORMAT)
     ip = request.environ.get('HTTP_X_REAL_IP')
+
+    # Comment or name left empty, send error message.
+    if not (name or "").strip() or not (comment or "").strip():
+        return render_guestbook(error_msg="Please provide a name and comment.")
 
     comments = read_comments()
     comments.append({
         'name': name,
         'comment': comment,
-        'date': datetime.strftime(date, DATE_FORMAT),
+        'date': date,
         'ip': ip
-    }) 
+    })
 
     with open(COMMENT_FILE, 'w') as f:
         json.dump(comments, f, indent=4, separators=(",", ": "))

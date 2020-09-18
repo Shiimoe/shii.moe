@@ -20,7 +20,7 @@
             margin-top: 3em;
         }
         .comment-input {
-            width: 30%; 
+            width: 30%;
             height: 8em;
             margin: 0.5em 0em;
         }
@@ -33,6 +33,13 @@
         }
         .comment {
             margin: 1.5em 0;
+        }
+        .error {
+            margin: 1em 0 2em 0;
+            padding: 1em 1.5em;
+            border: 2pt solid red;
+            border-radius: 7pt;
+            background: #f464;
         }
     </style>
 
@@ -52,16 +59,56 @@
         <div class="titleButton"><a href="/books">Bøker</a></div>
     </div>
 
-    <form action="/postcomment" method="POST">
+    {% if error_msg is defined %}
+        <p class="error">{{ error_msg }}</p>
+    {% endif %}
+
+    <form action="/postcomment" method="POST" name="commentBox">
         <input class="name-input input" name="name" placeholder="Your name" required>
         <br>
         <textarea class="comment-input input" name="comment" placeholder="Your comment" required></textarea>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Post">
     </form>
     <!-- add gender radio boxes (femboy) -->
 
-    {% if comments %}
+    <script>
+        // Script to get local time, will just fall back on server time
+        // if the script does not run.
+        const form = document.forms.namedItem("commentBox");
+        form.addEventListener('submit', ev => {
+            ev.preventDefault();
+
+            const formData = new FormData(form);
+
+            const now = new Date();
+            const { year, month, day } = {
+                year: String(now.getFullYear()),
+                month: String(now.getMonth() + 1).padStart(2, '0'),
+                day: String(now.getDate()).padStart(2, '0')
+            };
+            const { hour, minute } = {
+                hour: String(now.getHours()).padStart(2, '0'),
+                minute: String(now.getMinutes()).padStart(2, '0')
+            };
+            const dateString = `${year}-${month}-${day} ${hour}:${minute}`;
+
+            // Append to form:
+            formData.append('date', dateString);
+
+            // Send form:
+            const req = new XMLHttpRequest();
+            req.open(form.method, form.action, true);
+            req.onload = event => {
+                document.write(req.response);
+            };
+            req.send(formData);
+
+            window.location.reload();
+        }, false);
+    </script>
+
+    {% if comments is defined %}
     <div class="comments">
         {% for comment in comments %}
         <div class="comment">
