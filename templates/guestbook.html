@@ -9,6 +9,7 @@
         }
         .date {
             float: right;
+			font-family: monospace;
         }
         .date, .name {
             color: #0007;
@@ -19,11 +20,28 @@
         .comments {
             margin-top: 3em;
         }
-        .comment-input {
-            width: 30%;
-            height: 8em;
-            margin: 0.5em 0em;
-        }
+		.comments a {
+			color: #4e87bd;
+			text-decoration: underline;
+		}
+		.comments a:hover {
+			color: #3d6f9f;
+		}
+		.comments h1, .comments h2, .comments h3,
+		.comments h4, .comments h5, .comments h6 {
+			text-align: left;
+			margin: 0.4em 0 0 0;
+			border-bottom: 1pt solid #0000000f;
+		}
+		.comments img {
+			max-width: 100%;
+			max-height: 20em;
+			display: block;
+			border: 2pt solid #0000001a;
+			border-radius: 5pt;
+			margin: 0.5em 0;
+			filter: drop-shadow(0 4pt 8pt #0004);
+		}
         .input {
             font-family: 'Lora', serif;
             padding: 0.4em 0.6em;
@@ -31,9 +49,18 @@
             width: 30%;
             border: 1px solid #0004;
         }
-        .comment {
-            margin: 1.5em 0;
+        .comment-input {
+			font-family: monospace;
+            width: 30%;
+            height: 8em;
+            margin: 0.5em 0em;
         }
+        .comment {
+            margin: 2em 0 1.5em 0;
+        }
+		.comment-text p:nth-child(1) {
+			margin-top: 0;
+		}
         .error {
             margin: 1em 0 2em 0;
             padding: 1em 1.5em;
@@ -66,7 +93,7 @@
     <form action="/postcomment" method="POST" name="commentBox">
         <input class="name-input input" name="name" placeholder="Your name" required>
         <br>
-        <textarea class="comment-input input" name="comment" placeholder="Your comment" required></textarea>
+        <textarea class="comment-input input" name="comment" placeholder="Your comment (Markdown)" required></textarea>
         <br>
         <input type="submit" value="Post">
     </form>
@@ -112,10 +139,12 @@
     <div class="comments">
         {% for comment in comments %}
         <div class="comment">
-            <span class="name">~ {{ comment['name'] }}</span><span class="date">{{ comment['date'] }}</span>
+            <span class="name">~ {{ comment['name'] }}</span><span class="date">~{{ comment['date'] }}</span>
             <div style="clear: left;"></div>
-            <p class="comment-text" style="font-size: 120%;">{{ comment['comment'] }}</p>
-            <hr style="border: none; height: 3pt; background: #0002;">
+            <div class="comment-text" style="font-size: 120%;">
+				{{ comment['comment'] | safe }}
+			</div>
+            <hr style="border: none; height: 3pt; background: #0002;" />
         </div>
         {% endfor %}
     </div>

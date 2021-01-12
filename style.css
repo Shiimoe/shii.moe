@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/pygments-css@1.0.0/github.css');
 
 ::selection {
     background: pink; /* WebKit/Blink Browsers */
@@ -27,6 +28,34 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+hr {
+	background: none;
+	border: none;
+	border-top: 2pt dashed #8dacca52;
+}
+
+img.emoji, img.emojione, img.gemoji {
+	display: inline;
+	padding: 0;
+	margin: 0;
+	height: 1.3em;
+	vertical-align: top;
+	border: none;
+	filter: none;
+}
+
+code {
+	background: #00000012;
+    border: 1px solid #00000029;
+    border-radius: 2pt;
+    padding: 0 2pt;
+}
+pre { width: 100%; }
+pre code {
+	padding: 1em;
+	display: block;
 }
 
 .titleBar {
@@ -86,7 +115,7 @@ body {
 }
 
 .guitarPicture {
-    width:30em; 
+    width:30em;
     float: right;
     margin-left: 2em;
     border: 2pt solid #0006;
@@ -98,10 +127,10 @@ body {
 }
 
 #mascot {
-    height: 20em; 
+    height: 20em;
     position: fixed;
-    bottom:0em; 
-    right:0; 
+    bottom:0em;
+    right:0;
     opacity: .85;
 }
 
@@ -125,7 +154,7 @@ body {
     .titleButton {
         width: 50%
     }
-    
+
     .pdf {
         height: 300pt;
     }
@@ -140,7 +169,7 @@ body {
     #mascot {
         height: 10em;
     }
-    
+
     #content {
         padding-bottom: 10em;
     }

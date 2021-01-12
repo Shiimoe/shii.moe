@@ -1,9 +1,38 @@
 from flask import Flask, render_template, send_from_directory, request, redirect
+
+import markdown
+import markdown.extensions.codehilite
+import markdown.extensions.fenced_code
+import pymdownx, pymdownx.emoji
+import bleach
+
 from datetime import datetime
 from os import path
-app = Flask(__name__, static_url_path="", static_folder="./")
-
 import json
+
+app = Flask(__name__, static_url_path="", static_folder="./")
+md = markdown.Markdown(
+    extensions=['fenced_code', 'codehilite', 'pymdownx.emoji'],
+    extension_configs={
+        'pymdownx.emoji': {
+            'emoji_index': pymdownx.emoji.gemoji,
+            'emoji_generator': pymdownx.emoji.to_png,
+        }
+    })
+
+
+ALLOWED_TAGS = list(set(bleach.sanitizer.ALLOWED_TAGS + [
+    'ul', 'ol', 'li', 'p', 'pre', 'code', 'blockquote',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'br',
+    'strong', 'em', 'a', 'img'
+]))
+ALLOWED_ATTRIBUTES = {
+    **bleach.sanitizer.ALLOWED_ATTRIBUTES,
+    'a': ['href', 'title'],
+    'img': ['src', 'title', 'alt']
+}
+ALLOWED_PROTOCOLS = list(set(bleach.sanitizer.ALLOWED_PROTOCOLS
+    + ['http', 'https', 'mailto']))
 
 COMMENT_FILE = "comments.json"
 DATE_FORMAT = "%Y-%m-%d %H:%M"
@@ -27,6 +56,12 @@ def render_guestbook(**kw):
     comments = read_comments()
 
     kw['comments'] = reversed(comments)
+    for comment in comments:
+        comment['comment'] = bleach.clean(comment['comment'],
+            tags=ALLOWED_TAGS,
+            attributes=ALLOWED_ATTRIBUTES,
+            protocols=ALLOWED_PROTOCOLS)
+        comment['comment'] = md.convert(comment['comment'])
     return render_template('guestbook.html', **kw)
 
 @app.route('/guestbook')
