@@ -2,5 +2,6 @@ __pycache__/
 *.pyc
 desktop.ini
 comments.json
+comments*
 .pid
 .log
