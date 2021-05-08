@@ -18,8 +18,8 @@ html, body {
 
 body {
     color: black;
-    background: black;
-    background-image: url('background.png');
+    background: #baddff;
+    background-image: url('background-300x300.png');
     background-size: 10em;
     background-repeat: repeat;
     font-family: 'Lora', serif;
@@ -55,6 +55,10 @@ pre { width: 100%; }
 pre code {
 	padding: 1em;
 	display: block;
+}
+
+#content > a:first-child {
+	text-decoration: none;
 }
 
 .titleBar {
