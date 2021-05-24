@@ -15,10 +15,10 @@
             color: #0007;
         }
         .comment-text {
-            margin-top: 0.5em;
+            margin-top: 0.5rem;
         }
         .comments {
-            margin-top: 3em;
+            margin-top: 3rem;
         }
 		.comments a {
 			color: #4e87bd;
@@ -44,22 +44,31 @@
 		}
         .input {
             font-family: 'Lora', serif;
-            padding: 0.4em 0.6em;
+            padding: 0.4rem 0.6rem;
             font-size: 1em;
             width: 30%;
             border: 1px solid #0004;
+			border-radius: 3pt;
         }
         .comment-input {
 			font-family: monospace;
-            width: 30%;
             height: 8em;
             margin: 0.5em 0em;
         }
         .comment {
-            margin: 2em 0 1.5em 0;
+			margin: 2rem 0 1.5rem 0;
+			background: #00000005;
+			padding: 0.7rem 1.2rem 0 1.2rem;
+			border-bottom: 3pt solid #0000001a;
         }
 		.comment-text p:nth-child(1) {
 			margin-top: 0;
+		}
+		input[type="submit"] {
+			margin-left: 30%;
+			font-family: inherit;
+			transform-origin: left;
+			transform: translateX(-50%);
 		}
         .error {
             margin: 1em 0 2em 0;
@@ -145,7 +154,6 @@
             <div class="comment-text" style="font-size: 120%;">
 				{{ comment['comment'] | safe }}
 			</div>
-            <hr style="border: none; height: 3pt; background: #0002;" />
         </div>
         {% endfor %}
     </div>
