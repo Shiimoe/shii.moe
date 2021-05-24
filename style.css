@@ -9,6 +9,15 @@
     color: white;
 }
 
+/*
+ol > ::marker {
+	content: "\2116" counter(list-item) ". ";
+	font-variant-numeric: oldstyle-nums;
+}
+*/
+ol > ::marker {
+	content: counter(list-item, cjk-ideographic) "\ff0e";
+}
 
 html, body {
     padding: 0;
