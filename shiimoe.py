@@ -9,6 +9,7 @@ import bleach
 from datetime import datetime
 from os import path
 import json
+import re
 
 app = Flask(__name__, static_url_path="", static_folder="./")
 md = markdown.Markdown(
@@ -88,7 +89,7 @@ def postcomment():
         return err("Please provide a name and comment.")
 
     # Spam filtering!!
-    if len(name) > 130:
+    if len(name) > 110:
         return err("You're taking the piss with a name that long mate.")
     if len(comment) > 850:
         return err("No more than 850 characters!")
