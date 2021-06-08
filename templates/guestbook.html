@@ -45,7 +45,7 @@
         .input {
             font-family: var(--serif);
             padding: 0.4rem 0.6rem;
-            font-size: 1em;
+            font-size: 0.9em;
             width: 30%;
             border: 1px solid #0004;
             border-radius: 3pt;
@@ -114,14 +114,12 @@
 
     <form action="/postcomment" method="POST" name="commentBox">
         <input class="name-input input" name="name" placeholder="Your name" required>
-        <br>
         <div class="textbox">
         <textarea class="comment-input input" name="comment"
                   placeholder="# Your comment&#x0a;&#x0a;(≤2 links, ≤500 characters)"
                   required></textarea>
         <i class="fab fa-markdown"></i>
         </div>
-        <br>
         <input type="submit" value="Post">
     </form>
     <!-- add gender radio boxes (femboy) -->
