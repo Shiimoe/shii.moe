@@ -68,6 +68,8 @@ def render_guestbook(**kw):
 def guestbook():
     return render_guestbook()
 
+LINK_MATCH = re.compile("https?://")
+
 @app.route('/postcomment', methods=['POST'])
 def postcomment():
     now = datetime.now()
@@ -79,9 +81,21 @@ def postcomment():
           request.environ.get('REMOTE_ADDR')    or
           request.remote_addr)
 
+    err = lambda msg: render_guestbook(error_msg=msg)
+
     # Comment or name left empty, send error message.
     if not (name or "").strip() or not (comment or "").strip():
-        return render_guestbook(error_msg="Please provide a name and comment.")
+        return err("Please provide a name and comment.")
+
+    # Spam filtering!!
+    if len(name) > 130:
+        return err("You're taking the piss with a name that long mate.")
+    if len(comment) > 850:
+        return err("No more than 850 characters!")
+    if name.lower() == "annasysdek":
+        return err("Sorry, that name is toxic. Pick another.")
+    if len(LINK_MATCH.findall(comment)) > 2:
+        return err("No more than two (2) links!")
 
     comments = read_comments()
     comments.append({
