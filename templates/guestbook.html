@@ -50,10 +50,22 @@
             border: 1px solid #0004;
             border-radius: 3pt;
         }
+        .textbox {
+            margin: 0.5em 0;
+            padding: 0;
+            position: relative;
+        }
+        .textbox > i {
+            position: absolute;
+            left: 0.6em;
+            bottom: 0.7em;
+            opacity: 0.3;
+            font-size: 1rem;
+        }
         .comment-input {
             font-family: var(--monospace);
             height: 8em;
-            margin: 0.5em 0em;
+            margin: 0em;
         }
         .comment {
             margin: 2rem 0 1.5rem 0;
@@ -103,9 +115,12 @@
     <form action="/postcomment" method="POST" name="commentBox">
         <input class="name-input input" name="name" placeholder="Your name" required>
         <br>
+        <div class="textbox">
         <textarea class="comment-input input" name="comment"
-                  placeholder="Your comment &#xf60f; (≤2 links, ≤500 characters)"
+                  placeholder="# Your comment&#x0a;&#x0a;(≤2 links, ≤500 characters)"
                   required></textarea>
+        <i class="fab fa-markdown"></i>
+        </div>
         <br>
         <input type="submit" value="Post">
     </form>
