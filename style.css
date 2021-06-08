@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
-@import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
+@import url('https://pro.fontawesome.com/releases/v5.15.0/css/all.css');
+
+--root {
+    --fa: "Font Awesome 5 Pro", "Font Awesome 5 Brands"
+    --monospace: monospace, var(--fa);
+    --serif: 'Lora', serif, var(--fa);
+}
 
 ::selection {
     background: pink; /* WebKit/Blink Browsers */
@@ -32,7 +38,7 @@ body {
     background-image: url('background-300x300.png');
     background-size: 10em;
     background-repeat: repeat;
-    font-family: 'Lora', serif;
+    font-family: var(--serif);
     background-attachment: fixed;
     max-width: 800px;
     margin-left: auto;
@@ -154,7 +160,7 @@ pre code {
 
 @media only screen and (max-width: 724px) {
     .guitarText {
-        font-family: 'Lora', serif;
+        font-family: var(--serif);
         padding-right: 1em;
         padding-left: 1em;
     }

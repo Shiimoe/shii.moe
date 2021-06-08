@@ -9,7 +9,7 @@
         }
         .date {
             float: right;
-			font-family: monospace;
+            font-family: var(--monospace);
         }
         .date, .name {
             color: #0007;
@@ -20,56 +20,56 @@
         .comments {
             margin-top: 3rem;
         }
-		.comments a {
-			color: #4e87bd;
-			text-decoration: underline;
-		}
-		.comments a:hover {
-			color: #3d6f9f;
-		}
-		.comments h1, .comments h2, .comments h3,
-		.comments h4, .comments h5, .comments h6 {
-			text-align: left;
-			margin: 0.4em 0 0 0;
-			border-bottom: 1pt solid #0000000f;
-		}
-		.comments img {
-			max-width: 100%;
-			max-height: 20em;
-			display: block;
-			border: 2pt solid #0000001a;
-			border-radius: 5pt;
-			margin: 0.5em 0;
-			filter: drop-shadow(0 4pt 8pt #0004);
-		}
+        .comments a {
+            color: #4e87bd;
+            text-decoration: underline;
+        }
+        .comments a:hover {
+            color: #3d6f9f;
+        }
+        .comments h1, .comments h2, .comments h3,
+        .comments h4, .comments h5, .comments h6 {
+            text-align: left;
+            margin: 0.4em 0 0 0;
+            border-bottom: 1pt solid #0000000f;
+        }
+        .comments img {
+            max-width: 100%;
+            max-height: 20em;
+            display: block;
+            border: 2pt solid #0000001a;
+            border-radius: 5pt;
+            margin: 0.5em 0;
+            filter: drop-shadow(0 4pt 8pt #0004);
+        }
         .input {
-            font-family: 'Lora', serif;
+            font-family: var(--serif);
             padding: 0.4rem 0.6rem;
             font-size: 1em;
             width: 30%;
             border: 1px solid #0004;
-			border-radius: 3pt;
+            border-radius: 3pt;
         }
         .comment-input {
-			font-family: monospace;
+            font-family: var(--monospace);
             height: 8em;
             margin: 0.5em 0em;
         }
         .comment {
-			margin: 2rem 0 1.5rem 0;
-			background: #00000005;
-			padding: 0.7rem 1.2rem 0 1.2rem;
-			border-bottom: 3pt solid #0000001a;
+            margin: 2rem 0 1.5rem 0;
+            background: #00000005;
+            padding: 0.7rem 1.2rem 0 1.2rem;
+            border-bottom: 3pt solid #0000001a;
         }
-		.comment-text p:nth-child(1) {
-			margin-top: 0;
-		}
-		input[type="submit"] {
-			margin-left: 30%;
-			font-family: inherit;
-			transform-origin: left;
-			transform: translateX(-50%);
-		}
+        .comment-text p:nth-child(1) {
+            margin-top: 0;
+        }
+        input[type="submit"] {
+            margin-left: 30%;
+            font-family: inherit;
+            transform-origin: left;
+            transform: translateX(-50%);
+        }
         .error {
             margin: 1em 0 2em 0;
             padding: 1em 1.5em;
@@ -105,8 +105,7 @@
         <br>
         <textarea class="comment-input input" name="comment"
                   placeholder="Your comment (&#xf60f;) (≤2 links, ≤500 characters)"
-                  required>
-        </textarea>
+                  required></textarea>
         <br>
         <input type="submit" value="Post">
     </form>
@@ -155,8 +154,8 @@
             <span class="name">~ {{ comment['name'] }}</span><span class="date">~{{ comment['date'] }}</span>
             <div style="clear: left;"></div>
             <div class="comment-text" style="font-size: 120%;">
-				{{ comment['comment'] | safe }}
-			</div>
+                {{ comment['comment'] | safe }}
+            </div>
         </div>
         {% endfor %}
     </div>
