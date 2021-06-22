@@ -7,11 +7,11 @@ import pymdownx, pymdownx.emoji
 import bleach
 
 from datetime import datetime
-from os import path
+import os
 import json
 import re
 
-app = Flask(__name__, static_url_path="", static_folder="./")
+app = Flask(__name__, static_folder="./public")
 md = markdown.Markdown(
     extensions=['fenced_code', 'codehilite', 'pymdownx.emoji'],
     extension_configs={
@@ -48,10 +48,31 @@ def read_comments():
 
     return comments
 
+STATIC_PATH = os.path.realpath('./static')
+PUBLIC_PATH = os.path.realpath('./public')
+
+def is_subpath(path, dir):
+    return path.startswith(dir)
+
+def send_static_page(path, filename):
+    path = os.path.realpath(f'{STATIC_PATH}/{path}')
+    if not is_subpath(path, STATIC_PATH):
+        return 403
+
+    if not filename.endswith('.html'):
+        filename += '.html'
+    return send_from_directory(path, filename)
+
+def send_public_asset(path, filename):
+    path = os.path.realpath(f'{PUBLIC_PATH}/{path}')
+    if not is_subpath(path, PUBLIC_PATH):
+        return 403
+
+    return send_from_directory(path, filename)
 
 @app.route('/')
 def home():
-    return send_from_directory('./', 'index.html')
+    return send_static_page('./', 'index.html')
 
 def render_guestbook(**kw):
     comments = read_comments()
@@ -66,6 +87,7 @@ def render_guestbook(**kw):
     return render_template('guestbook.html', **kw)
 
 @app.route('/guestbook')
+@app.route('/guestbook.html')
 def guestbook():
     return render_guestbook()
 
@@ -112,12 +134,17 @@ def postcomment():
     return redirect('/guestbook', code=302)
 
 
-@app.route('/<p>')
-def serve_static(p):
-    print("testets")
-    if path.exists(p + '.html'):
-        return send_from_directory('./', p + '.html')
-    return send_from_directory('./', p)
+@app.route('/<path:filepath>')
+def serve_static(filepath):
+    path, filename = os.path.split(filepath)
+    if os.path.exists(f'{PUBLIC_PATH}/{path}/{filename}'):
+        return send_public_asset(path, filename)
+    if not filename.endswith('.html'):
+        filename += '.html'
+    if os.path.exists(f'{STATIC_PATH}/{path}/{filename}'):
+        return send_static_page(path, filename)
+    # Otherwise, 404.
+    return send_static_page('./', '404.html'), 404
 
 if __name__ == "__main__":
     app.run(debug=True)

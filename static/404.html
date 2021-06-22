@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shimo Couldn't Find That!!</title>
+    <link rel='stylesheet' type='text/css' href="/style.css">
+    <link rel='icon' type='image/png' href="/mascots/1-square.png">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="content">
+
+    <a href="/"><h1>Shimo!!</h1></a>
+
+    <div class="titleBar">
+        <div class="titleButton"><a href="/music">Musik</a></div>
+        <div class="titleButton"><a href="/school">Skole</a></div>
+        <div class="titleButton"><a href="/norsk">Norsk</a></div>
+        <div class="titleButton"><a href="/books">Bøker</a></div>
+    </div>
+
+    <h1>404, Not Found!</h1>
+    <p id="bottom" align="center">Couldn't find that page, sorry!!</p>
+
+    <style>
+        body, html {
+            overflow: hidden;
+        }
+        #mascot {
+            transition: all .3s ease;
+            opacity: 0;
+            bottom: 0;
+            left: 50%;
+            height: 0;
+            transform: translateX(-50%);
+        }
+    </style>
+    <img src="/mascots/1.png" id="mascot"></img>
+    <script src="image.js"></script>
+    <script>
+        const bottom = document.getElementById('bottom');
+        mascot.style.height =
+            `${window.innerHeight - (bottom.offsetTop + bottom.offsetHeight)}px`;
+    </script>
+    <script>
+        setTimeout(() => mascot.style.opacity = '1', 30);
+    </script>
+</body>
+</html>
