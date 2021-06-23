@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask, render_template, send_from_directory, request, redirect
 
 import markdown
@@ -11,7 +13,11 @@ import os
 import json
 import re
 
-app = Flask(__name__, static_folder="./public")
+STATIC_PATH = os.path.realpath('./static')
+PUBLIC_PATH = os.path.realpath('./public')
+COMMENT_FILE = os.path.realpath('./comments.json')
+DATE_FORMAT = "%Y-%m-%d %H:%M"
+app = Flask(__name__, static_folder=PUBLIC_PATH)
 md = markdown.Markdown(
     extensions=['fenced_code', 'codehilite', 'pymdownx.emoji'],
     extension_configs={
@@ -35,9 +41,6 @@ ALLOWED_ATTRIBUTES = {
 ALLOWED_PROTOCOLS = list(set(bleach.sanitizer.ALLOWED_PROTOCOLS
     + ['http', 'https', 'mailto']))
 
-COMMENT_FILE = "comments.json"
-DATE_FORMAT = "%Y-%m-%d %H:%M"
-
 def read_comments():
     comments = None
     try:
@@ -48,14 +51,11 @@ def read_comments():
 
     return comments
 
-STATIC_PATH = os.path.realpath('./static')
-PUBLIC_PATH = os.path.realpath('./public')
-
 def is_subpath(path, dir):
     return path.startswith(dir)
 
 def send_static_page(path, filename):
-    path = os.path.realpath(f'{STATIC_PATH}/{path}')
+    path = os.path.realpath(os.path.join(STATIC_PATH, path))
     if not is_subpath(path, STATIC_PATH):
         return 403
 
@@ -64,7 +64,7 @@ def send_static_page(path, filename):
     return send_from_directory(path, filename)
 
 def send_public_asset(path, filename):
-    path = os.path.realpath(f'{PUBLIC_PATH}/{path}')
+    path = os.path.realpath(os.path.join(PUBLIC_PATH, path))
     if not is_subpath(path, PUBLIC_PATH):
         return 403
 
@@ -137,11 +137,11 @@ def postcomment():
 @app.route('/<path:filepath>')
 def serve_static(filepath):
     path, filename = os.path.split(filepath)
-    if os.path.exists(f'{PUBLIC_PATH}/{path}/{filename}'):
+    if os.path.exists(os.path.join(PUBLIC_PATH, path, filename)):
         return send_public_asset(path, filename)
     if not filename.endswith('.html'):
         filename += '.html'
-    if os.path.exists(f'{STATIC_PATH}/{path}/{filename}'):
+    if os.path.exists(os.path.join(STATIC_PATH, path, filename)):
         return send_static_page(path, filename)
     # Otherwise, 404.
     return send_static_page('./', '404.html'), 404
