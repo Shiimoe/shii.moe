@@ -9,10 +9,11 @@ const randomYui = () => {
 	mascot.setAttribute("src", stem + ".png");
 	favicon.setAttribute("href", stem + "-square.png");
 
-	if      (pick === 11) useColourScheme('pink');
-	if      (pick === 15) useColourScheme('green');
-	else if (pick === 16) useColourScheme('rainbow');
-	else                  useColourScheme('default');
+	useColourScheme({
+		11: 'pink',
+		15: 'green',
+		16: 'rainbow'
+	}[pick] || 'default');
 }
 
 mascot.addEventListener("click", randomYui)
