@@ -69,7 +69,7 @@
         }
         .comment {
             margin: 2rem 0 1.5rem 0;
-            background: #00000005;
+            background: #00000008;
             padding: 0.7rem 1.2rem 0 1.2rem;
             border-bottom: 3pt solid #0000001a;
         }
@@ -93,6 +93,7 @@
 
     <link rel='stylesheet' type='text/css' href="style.css"/>
     <link rel='icon' type='image/png' href="/mascots/1-square.png">
+    <link rel="preload" as="image" href="/background-300x300.png">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -175,8 +176,11 @@
     {% else %}
         <p>No comments to display:(</p>
     {% endif %}
+    </div>
 
     <img src="mascots/1.png" id="mascot"></img>
+    <script src="colours.js"></script>
     <script src="image.js"></script>
+    <script>randomYui();</script>
 </body>
 </html>

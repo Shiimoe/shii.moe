@@ -4,7 +4,8 @@
 <head>
     <title>Shimo Couldn't Find That!!</title>
     <link rel='stylesheet' type='text/css' href="/style.css">
-    <link rel='icon' type='image/png' href="/mascots/1-square.png">
+    <link rel='icon' type='image/png' href="/mascots/17-square.png">
+    <link rel="preload" as="image" href="/background-300x300.png">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -22,6 +23,7 @@
 
     <h1>404, Not Found!</h1>
     <p id="bottom" align="center">Couldn't find that page, sorry!!</p>
+    </div>
 
     <style>
         body, html {
@@ -32,11 +34,14 @@
             opacity: 0;
             bottom: 0;
             left: 50%;
-            height: 0;
+            max-height: unset;
+            max-width: unset;
+            height: unset;
             transform: translateX(-50%);
         }
     </style>
-    <img src="/mascots/1.png" id="mascot"></img>
+    <img src="/mascots/17.png" id="mascot"></img>
+    <script src="colours.js"></script>
     <script src="image.js"></script>
     <script>
         const bottom = document.getElementById('bottom');

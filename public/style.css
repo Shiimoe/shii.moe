@@ -5,6 +5,13 @@
     --fa: "Font Awesome 5 Pro", "Font Awesome 5 Brands";
     --monospace: monospace, var(--fa);
     --serif: 'Lora', serif, var(--fa);
+
+    --mascot-height: 28rem;
+    --mascot-max-width: 30rem;
+    --mascot-height-mobile: 16rem;
+
+    --bg-colour: #badff;
+    --hue: 0deg;
 }
 
 ::selection {
@@ -34,8 +41,9 @@ html, body {
 
 body {
     color: black;
-    background: #baddff;
-    background-image: url('background-300x300.png');
+    background: var(--bg-colour);
+    background-image: url('/background-300x300.png');
+    background-blend-mode: luminosity;
     background-size: 10em;
     background-repeat: repeat;
     font-family: var(--serif);
@@ -122,9 +130,14 @@ pre code {
 
 #content {
     /* background-color: #f7d4ff80; */
+    filter: hue-rotate(var(--hue));
     padding: 1em;
     min-height: calc(100vh - 2em);
     padding-bottom: 20em;
+}
+
+#content img {
+	filter: hue-rotate(calc(-1 * var(--hue)));
 }
 
 .guitarCentre {
@@ -150,7 +163,8 @@ pre code {
 }
 
 #mascot {
-    height: 20em;
+    max-height: var(--mascot-height);
+    max-width: var(--mascot-max-width);
     position: fixed;
     bottom:0em;
     right:0;
@@ -190,11 +204,11 @@ pre code {
         width: calc(100% - 1.2em)
     }
     #mascot {
-        height: 10em;
+        height: var(--mascot-height-mobile);
     }
 
     #content {
-        padding-bottom: 10em;
+        padding-bottom: var(--mascot-height-mobile);
     }
 }
 
