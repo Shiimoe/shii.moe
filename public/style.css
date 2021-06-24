@@ -166,8 +166,9 @@ pre code {
     max-height: var(--mascot-height);
     max-width: var(--mascot-max-width);
     position: fixed;
-    bottom:0em;
-    right:0;
+    bottom: 0;
+    right: 0;
+    transition: all .15s ease;
     opacity: .85;
 }
 
