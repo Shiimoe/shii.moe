@@ -163,6 +163,7 @@ pre code {
 }
 
 #mascot {
+	opacity: 0;  /* before load */
     max-height: var(--mascot-height);
     max-width: var(--mascot-max-width);
     position: fixed;
@@ -217,6 +218,8 @@ h1 {
     color: black;
     text-align: center;
     font-variant: small-caps;
+	filter: drop-shadow(0px 0px 3px #0002);
+    text-shadow: 1.3pt 1.3pt #6800ff52;
 }
 
 li {
