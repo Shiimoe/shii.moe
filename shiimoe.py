@@ -117,8 +117,8 @@ def postcomment():
         return err("No more than 850 characters!")
     if name.lower() == "annasysdek":
         return err("Sorry, that name is toxic. Pick another.")
-    if len(LINK_MATCH.findall(comment)) > 2:
-        return err("No more than two (2) links!")
+    if len(LINK_MATCH.findall(comment)) != 0:
+        return err("No links!")
 
     comments = read_comments()
     comments.append({
