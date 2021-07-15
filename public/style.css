@@ -199,11 +199,21 @@ pre code {
     }
 
     .comment-input {
-        height: 5em;
+        height: 9em;
         margin: 0em 0em;
     }
+    form[action="/postcomment"] {
+	text-align: right;
+    }
     .input {
-        width: calc(100% - 1.2em)
+	box-sizing: border-box;
+	display: block;
+        width: 100%;
+    }
+    input[type="submit"] {
+	border-radius: 3pt;
+	border: 1px solid #0003;
+	transform: none;
     }
     #mascot {
         height: var(--mascot-height-mobile);

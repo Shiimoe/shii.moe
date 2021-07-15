@@ -171,10 +171,12 @@
                 {{ comment['comment'] | safe }}
             </div>
         </div>
+	{% else %}
+		<center><p>No comment posted yet... :(</p></center>
         {% endfor %}
     </div>
     {% else %}
-        <p>No comments to display:(</p>
+	    <center><p>Comments weren't given by renderer!!</p></center>
     {% endif %}
     </div>
 
