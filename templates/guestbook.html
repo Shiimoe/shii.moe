@@ -157,7 +157,8 @@
             };
             req.send(formData);
 
-            window.location.reload();
+			req.addEventListener('load',
+				window.location.reload.bind(window.location));
         }, false);
     </script>
 
