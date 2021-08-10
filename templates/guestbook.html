@@ -85,9 +85,11 @@
         .error {
             margin: 1em 0 2em 0;
             padding: 1em 1.5em;
-            border: 2pt solid red;
-            border-radius: 7pt;
-            background: #f464;
+            border: 2pt solid #ff6b0091;
+            border-radius: 10pt;
+            border-top-left-radius: 0;
+            background: #ce285bad;
+            color: white;
         }
     </style>
 
@@ -114,11 +116,14 @@
     {% endif %}
 
     <form action="/postcomment" method="POST" name="commentBox">
-        <input class="name-input input" name="name" placeholder="Your name" required>
+        <input class="name-input input"
+               name="name" placeholder="Your name"
+               {% if dname is defined %} value="{{ dname }}" {% endif %}
+               required>
         <div class="textbox">
         <textarea class="comment-input input" name="comment"
                   placeholder="# Your comment&#x0a;&#x0a;(no links, ≤850 characters)"
-                  required></textarea>
+				  required>{{ dcomment }}</textarea>
         <i class="fab fa-markdown"></i>
         </div>
         <input type="submit" value="Post">
@@ -155,10 +160,8 @@
             req.onload = event => {
                 document.write(req.response);
             };
-            req.send(formData);
 
-			req.addEventListener('load',
-				window.location.reload.bind(window.location));
+            req.send(formData);
         }, false);
     </script>
 

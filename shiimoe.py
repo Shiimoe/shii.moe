@@ -76,14 +76,16 @@ def home():
 
 def render_guestbook(**kw):
     comments = read_comments()
+    comments.reverse()
 
-    kw['comments'] = reversed(comments)
     for comment in comments:
         comment['comment'] = bleach.clean(comment['comment'],
             tags=ALLOWED_TAGS,
             attributes=ALLOWED_ATTRIBUTES,
             protocols=ALLOWED_PROTOCOLS)
         comment['comment'] = md.convert(comment['comment'])
+
+    kw['comments'] = comments
     return render_template('guestbook.html', **kw)
 
 @app.route('/guestbook')
@@ -100,11 +102,11 @@ def postcomment():
     name = request.form.get('name')
     comment = request.form.get('comment')
     date = request.form.get('date') or datetime.strftime(now, DATE_FORMAT)
-    ip = (request.environ.get('HTTP_X_REAL_IP') or
-          request.environ.get('REMOTE_ADDR')    or
-          request.remote_addr)
+    ip = (request.environ.get('HTTP_X_REAL_IP')
+       or request.environ.get('REMOTE_ADDR')
+       or request.remote_addr)
 
-    err = lambda msg: render_guestbook(error_msg=msg)
+    err = lambda msg: render_guestbook(error_msg=msg, dcomment=comment, dname=name)
 
     # Comment or name left empty, send error message.
     if not (name or "").strip() or not (comment or "").strip():
@@ -121,6 +123,9 @@ def postcomment():
         return err("No links!")
 
     comments = read_comments()
+    if any(c['comment'] == comment for c in comments):
+        return err("Duplicate comment. Please write unique comments.")
+
     comments.append({
         'name': name,
         'comment': comment,
