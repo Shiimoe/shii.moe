@@ -81,6 +81,27 @@ pre code {
 	display: block;
 }
 
+blockquote {
+    margin: 0.5em 0;
+    border-left: 5pt solid #0002;
+    padding: 0.4em 1.6em;
+    color: #000a
+}
+
+blockquote cite {
+    display: block;
+    margin-left: 1em;
+    color: #0008
+}
+
+blockquote > *:first-child {
+    margin-top: 0;
+}
+
+blockquote > *:last-child {
+    margin-bottom: 0;
+}
+
 #content > a:first-child {
 	text-decoration: none;
 }

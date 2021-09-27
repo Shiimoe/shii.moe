@@ -109,6 +109,7 @@
         <div class="titleButton"><a href="/school">Skole</a></div>
         <div class="titleButton"><a href="/norsk">Norsk</a></div>
         <div class="titleButton"><a href="/books">Bøker</a></div>
+        <div class="titleButton"><a href="/blog">Blog</a></div>
     </div>
 
     {% if error_msg is defined %}
@@ -175,8 +176,8 @@
                 {{ comment['comment'] | safe }}
             </div>
         </div>
-	{% else %}
-		<center><p>No comment posted yet... :(</p></center>
+	    {% else %}
+		    <p align="center">No comment posted yet... :(</p>
         {% endfor %}
     </div>
     {% else %}
@@ -185,9 +186,9 @@
     </div>
 
     <noscript><style>#mascot { opacity: 0.85; }</style></noscript>
-    <img src="mascots/8.png" id="mascot"></img>
-    <script src="colours.js"></script>
-    <script src="image.js"></script>
+    <img src="/mascots/8.png" id="mascot"></img>
+    <script src="/colours.js"></script>
+    <script src="/image.js"></script>
     <script>randomMascot(NOVELTY);</script>
 </body>
 </html>
