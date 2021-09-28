@@ -13,13 +13,17 @@ import os
 import json
 import re
 
+BLOG_PATH = os.path.realpath('./blog')
 STATIC_PATH = os.path.realpath('./static')
 PUBLIC_PATH = os.path.realpath('./public')
 COMMENT_FILE = os.path.realpath('./comments.json')
 DATE_FORMAT = "%Y-%m-%d %H:%M"
 app = Flask(__name__, static_folder=PUBLIC_PATH)
 md = markdown.Markdown(
-    extensions=['fenced_code', 'codehilite', 'pymdownx.emoji'],
+    extensions=[
+        'fenced_code', 'codehilite',
+        'pymdownx.emoji', 'smarty', 'attr_list',
+        'full_yaml_metadata', 'markdown_captions'],
     extension_configs={
         'pymdownx.emoji': {
             'emoji_index': pymdownx.emoji.gemoji,
@@ -92,6 +96,49 @@ def render_guestbook(**kw):
 @app.route('/guestbook.html')
 def guestbook():
     return render_guestbook()
+
+@app.route('/blog')
+@app.route('/blog/index.html')
+def blogindex():
+    posts = []
+    for file in os.listdir(BLOG_PATH):
+        slug = file[:-3]
+        meta = None
+        with open(f"{BLOG_PATH}/{file}", 'r') as f:
+            md.convert(f.read())
+            meta = md.Meta
+        posts.append({
+            'slug': slug,
+            'title': meta['title'],
+            'published': meta['published'],
+            'date': datetime.strftime(meta['published'], '%Y-%m-%d'),
+            'datetime': meta['published'].isoformat()
+        })
+    print(posts)
+    posts.sort(key = lambda post: post['published'], reverse=True)
+    return render_template("blogindex.html", posts = posts)
+
+@app.route('/blog/<slug>')
+@app.route('/blog/<slug>.html')
+def blogpost(slug):
+    keywords = {
+        'slug': slug,
+        'title': None
+    }
+    for post in os.listdir(BLOG_PATH):
+        if post == slug + ".md":
+            with open(f"{BLOG_PATH}/{post}", 'r') as file:
+                content = file.read()
+                keywords["content"] = md.convert(content)
+                keywords["title"] = md.Meta['title']
+            break
+        
+    if 'content' not in keywords:
+        return send_static_page('./', '404.html'), 404
+
+    
+    return render_template("blogpost.html", **keywords)
+
 
 LINK_MATCH = re.compile("https?://")
 

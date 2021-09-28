@@ -1,5 +1,7 @@
 Flask
 Pygments
 markdown
+markdown-full-yaml-metadata
+markdown-captions
 bleach
 pymdown-extensions
