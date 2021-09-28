@@ -132,8 +132,7 @@ pre code {
     /* background-color: #f7d4ff80; */
     filter: hue-rotate(var(--hue));
     padding: 1em;
-    min-height: calc(100vh - 2em);
-    padding-bottom: 20em;
+    padding-bottom: var(--mascot-height);
 }
 
 #content img {
