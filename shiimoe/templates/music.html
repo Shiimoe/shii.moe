@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block header %}
+    <a href="/"><h1>{% block title %}Musikk{% endblock %}!!</h1></a>
+{% endblock %}
+{% block content %}
+    <div class="guitarAudio">
+    <audio controls s>
+        <source src="lemon.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+
+    <div class = "guitarCentre">
+    <img src="gita.jpg" class="guitarPicture">
+    <p class="guitarText">A recording of <em>Lemon Meringue Tie</em> by <em>Dance Gavin Dance</em> played on my <em>Epiphone Les Paul</em>, coming
+        through an <em>Orange Crush 20</em> with a <em>Boss DS-1</em> for distortion.
+    </p>
+    <p class="guitarText">Et opptak av <em>Lemon Merginue Tie</em> av <em>Dance Gavin Dance</em> spillet
+    på <em>Epiphone Les Paul</em>en min, gjennom en <em>Orange Crush 20</em> med en <em>Boss DS-1</em>
+    for forvrengning.</p>
+    </div>
+
+    <div class ="guitarAudio">
+    <audio controls s class="audio">
+        <source src="rio.mp3" type="audio/mpeg">
+    </audio>
+    </div>
+
+    <div class = "guitarCentre">
+        <img src="classical.jpg" class="guitarPicture">
+        <p class="guitarText">Dette musikkstykket heter <em>Rio by Night</em> av <em>Vincent Lindsey-Clark</em>, det er veldig enkel, men det er gøy å spille.</p>
+    </div>
+{% endblock %}

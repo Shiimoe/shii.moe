@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <style>
+        .blog-posts {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .blog-listing a {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7em 1em;
+            margin: 0.3em 0;
+            border-radius: 5pt;
+            transition: all .05s ease;
+            text-decoration: none;
+        }
+        .blog-listing a:hover {
+            background-color: #679dd727;
+            transform: scale(1.01);
+        }
+        .blog-listing .title {
+            text-decoration: underline;
+        }
+        .blog-listing .published {
+            opacity: 0.4;
+        }
+    </style>
+{% endblock %}
+{% block header %}
+    <a href="/"><h1>{% block title %}Blog List{% endblock %}!!</h1></a>
+{% endblock %}
+{% block content %}
+    <ul class="blog-posts">
+        {% for post in posts %}
+        <li class="blog-listing">
+            <a href="/blog/{{ post['slug'] }}">
+                <span class="title">{{ post['title'] }}</span>
+                <span class="published">
+                    (<time datetime="{{ post['datetime'] }}">{{ post['date'] }}</time>)
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

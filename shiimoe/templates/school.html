@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block header %}
+	<a href="/"><h1>{% block title %}Skole{% endblock %}!!</h1></a>
+{% endblock %}
+{% block content %}
+    <h3 style="text-align: center;">Maths</h3>
+
+    <iframe class="pdf" src="maths.pdf" width="100%" height="900pt"></iframe>
+{% endblock %}

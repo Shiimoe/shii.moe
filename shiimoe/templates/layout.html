@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+{% macro nav_link(link, title) -%}
+	{% if request.path == link %}
+		<div class="titleButton"><a href="/">Hjem</a></div>
+	{% else %}
+		<div class="titleButton"><a href="{{ link }}">{{ title }}</a></div>
+	{% endif %}
+{%- endmacro %}
+
+<html lang="en-GB">
+<head>
+	{% block meta %}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% endblock %}
+	{% block head %}
+	{% endblock %}
+	{% block default_head %}
+	<link rel="stylesheet" type="text/css" href="/style.css"/>
+	<link rel="icon" type="image/png" href="/mascots/{{ mascot }}-square.png">
+	<link rel="preload" as="image" href="/background-300x300.png">
+	<title>{% block title %}{% endblock %} – Shiimoe!!</title>
+	{% endblock %}
+</head>
+<body>
+	<div id="content">
+		{% block header %}
+		{% endblock %}
+		{% block nav %}
+		<div class="titleBar">
+			{{ nav_link('/music',  'Musikk') }}
+			{{ nav_link('/school', 'Skole') }}
+			{{ nav_link('/norsk',  'Norsk') }}
+			{{ nav_link('/books',  'Bøker') }}
+			{{ nav_link('/blog',    'Blog') }}
+		</div>
+		{% endblock %}
+		{% block content %}
+		{% endblock %}
+	</div>
+	{% block scripts %}
+		<noscript><style>#mascot { opacity: 0.85; }</style></noscript>
+		<img src="/mascots/{{ mascot }}.png" id="mascot"></img>
+		<script src="/colours.js"></script>
+		<script src="/image.js"></script>
+		<script>randomMascot(NOVELTY);</script>
+	{% endblock %}
+</body>
+</html>

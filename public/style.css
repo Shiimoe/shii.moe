@@ -53,6 +53,15 @@ body {
     margin-right: auto;
 }
 
+a.link {
+	display: inline-block;
+	transition: all .1s ease;
+}
+
+a.link:hover {
+	transform: skewX(-7deg);
+}
+
 hr {
 	background: none;
 	border: none;
@@ -125,11 +134,12 @@ blockquote > *:last-child {
     background-color: #acb9f8;
     display: inline-block;
     margin: 0.3em 0.3em;
-    padding: 0.12em 0.3em;
+    padding: 0.12em 0;
     box-shadow: 0.3em 0.3em 0 #00000030;
     transition: 0.3s;
     font-size: 20pt;
-    width: 12.5%;
+	text-align: center;
+    width: 15%;
     font-weight: bold;
     font-variant: small-caps;
 }

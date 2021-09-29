@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Shimo!!</title>
+{% extends 'layout.html' %}
+{% block head %}
     <style>
         .name {
             float: left;
@@ -92,26 +89,11 @@
             color: white;
         }
     </style>
-
-    <link rel='stylesheet' type='text/css' href="style.css"/>
-    <link rel='icon' type='image/png' href="/mascots/8-square.png">
-    <link rel="preload" as="image" href="/background-300x300.png">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div id="content">
-
-    <a href="/"><h1>Shimo!!</h1></a>
-
-    <div class="titleBar">
-        <div class="titleButton"><a href="/music">Musik</a></div>
-        <div class="titleButton"><a href="/school">Skole</a></div>
-        <div class="titleButton"><a href="/norsk">Norsk</a></div>
-        <div class="titleButton"><a href="/books">Bøker</a></div>
-        <div class="titleButton"><a href="/blog">Blog</a></div>
-    </div>
-
+{% endblock %}
+{% block header %}
+    <a href="/"><h1>{% block title %}Guestbook{% endblock %}!!</h1></a>
+{% endblock %}
+{% block content %}
     {% if error_msg is defined %}
         <p class="error">{{ error_msg }}</p>
     {% endif %}
@@ -183,12 +165,4 @@
     {% else %}
 	    <center><p>Comments weren't given by renderer!!</p></center>
     {% endif %}
-    </div>
-
-    <noscript><style>#mascot { opacity: 0.85; }</style></noscript>
-    <img src="/mascots/8.png" id="mascot"></img>
-    <script src="/colours.js"></script>
-    <script src="/image.js"></script>
-    <script>randomMascot(NOVELTY);</script>
-</body>
-</html>
+{% endblock %}
