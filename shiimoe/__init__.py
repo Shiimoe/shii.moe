@@ -111,7 +111,7 @@ STATIC_TEMPLATES = {
     ('index.html',  frozen({})): static_template('index.html'),
     ('music.html',  frozen({})): static_template('music.html'),
     ('school.html', frozen({})): static_template('school.html'),
-    ('norsk.html',  frozen({})): static_template('music.html'),
+    ('norsk.html',  frozen({})): static_template('norsk.html'),
     ('books.html',  frozen({})): static_template('books.html'),
     ('blogindex.html', frozen({
         'posts': STATIC_BLOG_POSTS
