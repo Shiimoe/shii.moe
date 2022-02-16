@@ -68,7 +68,7 @@ hr {
 	border-top: 2pt dashed #8dacca52;
 }
 
-img.emoji, img.emojione, img.gemoji {
+img.emoji, img.emojione, img.gemoji, img.twemoji {
 	display: inline;
 	padding: 0;
 	margin: 0;
