@@ -55,16 +55,25 @@ def get_blog_posts():
     posts = []
     for file in os.listdir(BLOG_PATH):
         slug = file[:-3]
+
+        content = None
         meta = None
         with open(f"{BLOG_PATH}/{file}", 'r') as f:
-            md.convert(f.read())
+            content = md.convert(f.read())
             meta = md.Meta
+        
+        published = meta['published']
+        updated = meta.get('updated', published)
         posts.append({
             'slug': slug,
             'title': meta['title'],
+            'content': content,
             'published': meta['published'],
-            'date': datetime.strftime(meta['published'], '%Y-%m-%d'),
-            'datetime': meta['published'].isoformat()
+            'updated': updated,
+            'date': datetime.strftime(updated, '%Y-%m-%d'),
+            'datetime': updated.isoformat(),
+            'pubdate': datetime.strftime(published, '%Y-%m-%d'),
+            'pubdatetime': published.isoformat(),
         })
     posts.sort(key = lambda post: post['published'], reverse=True)
     return tuple(posts)
@@ -116,6 +125,9 @@ STATIC_TEMPLATES = {
     ('blogindex.html', frozen({
         'posts': STATIC_BLOG_POSTS
     })): static_template('blogindex.html', posts=STATIC_BLOG_POSTS),
+    ('rss.xml',  frozen({
+        'posts': STATIC_BLOG_POSTS
+    })): static_template('rss.xml', posts=STATIC_BLOG_POSTS),
 }
 
 for blogpost in os.listdir(BLOG_PATH):
@@ -184,6 +196,18 @@ def render_guestbook(**kw):
 @app.route('/guestbook.html')
 def guestbook():
     return render_guestbook()
+
+@app.route('/rss.xml')
+@app.route('/rss')
+@app.route('/atom.xml')
+@app.route('/atom')
+@app.route('/index.xml')
+@app.route('/blog.xml')
+@app.route('/posts.xml')
+@app.route('/blog/index.xml')
+def rssblogposts():
+    posts = get_blog_posts()
+    return template('rss.xml', posts=posts)
 
 @app.route('/blog')
 @app.route('/blog/index.html')
