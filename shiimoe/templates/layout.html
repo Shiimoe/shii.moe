@@ -22,6 +22,7 @@
 	<link rel="icon" type="image/png" href="/mascots/{{ mascot }}-square.png">
 	<link rel="preload" as="image" href="/background-300x300.png">
 	<title>{% block title %}{% endblock %} – Shiimoe!!</title>
+	<script src="https://unpkg.com/tex-linebreak2@latest/dist/lib_web.js"></script>
 	{% endblock %}
 </head>
 <body>
@@ -41,11 +42,20 @@
 		{% endblock %}
 	</div>
 	{% block scripts %}
+		<!-- Mascot -->
 		<noscript><style>#mascot { opacity: 0.85; }</style></noscript>
 		<img src="/mascots/{{ mascot }}.png" id="mascot"></img>
 		<script src="/colours.js"></script>
 		<script src="/image.js"></script>
 		<script>randomMascot(NOVELTY);</script>
+		<!-- Competent text alignment -->
+		<script>
+			// Only immediate children paragraphs of article tag are considered content.
+			const paragraphs = document.querySelectorAll("article > p");
+			texLinebreak_lib_web.texLinebreakDOM(paragraphs, {
+				align: 'justify'
+			});
+		</script>
 	{% endblock %}
 </body>
 </html>
