@@ -31,7 +31,7 @@ md = markdown.Markdown(
         'full_yaml_metadata', 'markdown_captions'],
     extension_configs={
         'pymdownx.emoji': {
-            'emoji_index': pymdownx.emoji.gemoji,
+            'emoji_index': pymdownx.emoji.twemoji,
             'emoji_generator': pymdownx.emoji.to_png,
         }
     })
