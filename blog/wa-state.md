@@ -1,5 +1,5 @@
 ---
-title: !!WIP!! A Brief History of the Wa people (佤族)
+title: (WIP) A Brief History of the Wa people (佤族)
 published: 2022-03-17 18:45:00
 ---
 
