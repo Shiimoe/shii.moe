@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>Shiimoe Blog Feed</title>
+	<title type="html">Shiimoe Blog Feed</title>
 	<subtitle>Blog posts on shii.moe.</subtitle>
 	{% block author %}
 	<author>
@@ -13,19 +13,19 @@
 	<category term="blog"/>
 	<link href="https://shii.moe/rss.xml" rel="self" />
 	<link href="http://shii.moe/" />
-	<id>shii.moe</id>
+	<id>https://shii.moe</id>
 	<updated>{{ posts[0]['datetime'] }}Z</updated>
 
 	{% for post in posts %}
 	<entry>
-		<id>shii.moe/blog/{{ post['slug'] }}</id>
-		<title>{{ post['title'] }}</title>
+		<id>https://shii.moe/blog/{{ post['slug'] }}</id>
+		<title type="html">{{ post['title'] }}</title>
 		<published>{{ post['pubdatetime'] }}Z</published>
 		<updated>{{ post['datetime'] }}Z</updated>
 		{{ self.author() }}
 		<link rel="alternate" href="/blog/{{ post['slug'] }}"/>
 		<category term="blog"/>
-		<content>
+		<content type="html">
 			<![CDATA[{{ post['content'] | safe }}]]>
 		</content>
 	</entry>

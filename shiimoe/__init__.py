@@ -207,9 +207,14 @@ def guestbook():
 @app.route('/blog/index.xml')
 def rssblogposts():
     posts = get_blog_posts()
-    return template('rss.xml', posts=posts)
+    feed = template('rss.xml', posts=posts)
+    res = app.make_response(feed)
+    res.mimetype = 'application/atom+xml'
+    return res
 
 @app.route('/blog')
+@app.route('/blog/')
+@app.route('/blog/index')
 @app.route('/blog/index.html')
 def blogindex():
     posts = get_blog_posts()
