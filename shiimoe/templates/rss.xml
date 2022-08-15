@@ -13,7 +13,7 @@
 	<category term="blog"/>
 	<link href="https://shii.moe/rss.xml" rel="self" />
 	<link href="http://shii.moe/" />
-	<id>https://shii.moe</id>
+	<id>https://shii.moe/</id>
 	<updated>{{ posts[0]['datetime'] }}Z</updated>
 
 	{% for post in posts %}

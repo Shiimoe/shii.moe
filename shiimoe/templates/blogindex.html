@@ -25,12 +25,33 @@
         .blog-listing .published {
             opacity: 0.4;
         }
+        #atomfeed {
+            text-align: right;
+            margin: .5em 0;
+        }
+        #atomfeed img {
+            vertical-align: middle;
+	    margin-left: .25em;
+        }
+        #atomfeed a {
+            text-decoration: none;
+	    display: inline-block;
+	    padding: .25em .5em;
+	    background: rgba(0, 50, 255, 0.07);
+	    border-radius: .25em;
+	}
     </style>
 {% endblock %}
 {% block header %}
     <a href="/"><h1>{% block title %}Blog List{% endblock %}!!</h1></a>
 {% endblock %}
 {% block content %}
+    <div id="atomfeed">
+	<a href="/rss.xml">
+	RSS Feed
+        <img src="https://validator.w3.org/feed/images/valid-atom.png" alt="Valid Atom Feed">
+	</a>
+    </div>
     <ul class="blog-posts">
         {% for post in posts %}
         <li class="blog-listing">

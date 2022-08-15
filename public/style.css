@@ -29,6 +29,9 @@ ol > ::marker {
 	font-variant-numeric: oldstyle-nums;
 }
 */
+ol {
+	list-style-type: cjk-ideographic;
+}
 ol > ::marker {
 	content: counter(list-item, cjk-ideographic) "\ff0e";
 }
@@ -117,6 +120,8 @@ blockquote > *:last-child {
 
 .titleBar {
     background-color: #679dd74d;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     border-radius: 5pt;
     box-shadow: 0 4pt 22pt #0000003b;
     border: 1pt solid #87b1dd;
