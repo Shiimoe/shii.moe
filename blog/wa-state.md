@@ -1,7 +1,9 @@
 ---
-title: A Brief History of the Wa people (佤族)
+title: !!WIP!! A Brief History of the Wa people (佤族)
 published: 2022-03-17 18:45:00
 ---
+
+*this article is a work in progress*
 
 Before there were Wa, there were tadpoles, Ya Htawm and Ya Htai, swimming in a lake.
 Of which was so cold and deep not a single fish lived in it, even the surrounding jungle was uninhabited for miles.
@@ -22,3 +24,4 @@ They had such a reputation for violence that the Sino-Anglo border lay undefined
 
 A clear distinction should be made of the Wa and other ethnic groups such as the Papuans
 The Wa did not collect skulls for their own amusement or satisfaction, it was purely for the greater good of the village.
+
