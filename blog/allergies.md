@@ -1,6 +1,6 @@
 ---
 title: Allergies in children
-date: 2022-08-22 19:45
+published: 2022-08-22 19:45:00
 ---
 
 I always thought lactose intolerance was something made up by the American media,
