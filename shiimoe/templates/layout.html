@@ -23,7 +23,7 @@
 	<link rel="preload" as="image" href="/background-300x300.png">
 	<link rel="alternate" type="application/atom+xml" title="RSS/Atom feed for shii.moe" href="/rss.xml">
 	<title>{% block title %}{% endblock %} – Shiimoe!!</title>
-	<script src="https://unpkg.com/tex-linebreak2@latest/dist/lib_web.js"></script>
+	<script src="https://unpkg.com/tex-linebreak2@latest/dist/lib.js"></script>
 	{% endblock %}
 </head>
 <body>
@@ -53,7 +53,7 @@
 		<script>
 			// Only immediate children paragraphs of article tag are considered content.
 			const paragraphs = document.querySelectorAll("article > p");
-			texLinebreak_lib_web.texLinebreakDOM(paragraphs, {
+			texLinebreak.texLinebreakDOM(paragraphs, {
 				align: 'justify'
 			});
 		</script>
