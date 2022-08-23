@@ -24,6 +24,47 @@
 	<link rel="alternate" type="application/atom+xml" title="RSS/Atom feed for shii.moe" href="/rss.xml">
 	<title>{% block title %}{% endblock %} – Shiimoe!!</title>
 	<script src="https://unpkg.com/tex-linebreak2@latest/dist/lib.js"></script>
+	<script src="https://mnater.github.io/Hyphenopoly/min/Hyphenopoly_Loader.js"></script>
+	<script>
+	const flow = () => {
+	    // Only immediate children paragraphs of article tag are considered content.
+	    const paragraphs = document.querySelectorAll("article > p");
+	    texLinebreak.texLinebreakDOM(paragraphs, {
+	        align: 'justify'
+	    });
+	};
+	const hyphenConfig = {
+            require: {
+                "en-gb": "FORCEHYPHENOPOLY",
+            },
+            paths: {
+                patterndir: "https://mnater.github.io/Hyphenopoly/min/patterns/",
+                maindir: "https://mnater.github.io/Hyphenopoly/min/"
+            },
+            setup: {
+		CORScredentials: "omit",
+                selectors: {
+                    "article": {}
+                }
+            },
+	    handleEvent: {
+		hyphenopolyEnd: flow
+	    }
+        };
+	document.fonts.ready.then(() => {
+	    Hyphenopoly.config(hyphenConfig);
+	});
+	</script>
+	<noscript>
+            <style>
+            .article {
+                hyphens: auto;
+                -webkit-hyphens: auto;
+                -ms-hyphens: auto;
+                text-aling: justify;
+            }
+            </style>
+        </noscript>
 	{% endblock %}
 </head>
 <body>
@@ -51,11 +92,7 @@
 		<script>randomMascot(NOVELTY);</script>
 		<!-- Competent text alignment -->
 		<script>
-			// Only immediate children paragraphs of article tag are considered content.
-			const paragraphs = document.querySelectorAll("article > p");
-			texLinebreak.texLinebreakDOM(paragraphs, {
-				align: 'justify'
-			});
+		if (0) document.fonts.ready.then(async );
 		</script>
 	{% endblock %}
 </body>
