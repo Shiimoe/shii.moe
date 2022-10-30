@@ -61,7 +61,7 @@ def get_blog_posts():
         with open(f"{BLOG_PATH}/{file}", 'r') as f:
             content = md.convert(f.read())
             meta = md.Meta
-        
+
         published = meta['published']
         updated = meta.get('updated', published)
         posts.append({
@@ -229,7 +229,8 @@ def blogpost(slug):
 
     return template('blogpost.html', **keywords)
 
-LINK_MATCH = re.compile("https?://")
+LINK_MATCH = re.compile(r"https?://")
+BAD_SPEAK = re.compile(r"@crypt|crypto\b|get rich", re.IGNORECASE)
 
 @app.route('/postcomment', methods=['POST'])
 def postcomment():
@@ -255,8 +256,10 @@ def postcomment():
         return err("No more than 850 characters!")
     if name.lower() == "annasysdek":
         return err("Sorry, that name is toxic. Pick another.")
-    if len(LINK_MATCH.findall(comment)) != 0:
+    if LINK_MATCH.search(comment) != None:
         return err("No links!")
+    if BAD_SPEAK.search(comment) != None:
+        return err("Try again in proper newspeak! No badspeak.")
 
     comments = read_comments()
     if any(c['comment'] == comment for c in comments):
@@ -273,7 +276,6 @@ def postcomment():
         json.dump(comments, f, indent=4, separators=(",", ": "))
 
     return redirect('/guestbook', code=302)
-
 
 @app.route('/<path:filepath>')
 def serve_static(filepath):
