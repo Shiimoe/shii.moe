@@ -2,4 +2,4 @@
 import shiimoe
 
 if __name__ == '__main__':
-    shiimoe.app.run(debug=True)
+    shiimoe.app.run(debug=True, port=8000)

@@ -1,3 +1,5 @@
+.DS_*
+._*
 __pycache__/
 *.pyc
 desktop.ini

@@ -230,7 +230,7 @@ def blogpost(slug):
     return template('blogpost.html', **keywords)
 
 LINK_MATCH = re.compile(r"https?://")
-BAD_SPEAK = re.compile(r"@crypt|crypto\b|get rich", re.IGNORECASE)
+BAD_SPEAK = re.compile(r"@crypt|crypto\b|get rich|porn star|pornstar", re.IGNORECASE)
 
 @app.route('/postcomment', methods=['POST'])
 def postcomment():
